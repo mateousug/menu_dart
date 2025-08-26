@@ -1,0 +1,1 @@
+para ejecutar el programa, escribe en la terminal 'dart menu.dart', esta es la unica forma en la que vi que puede funcionar, hasta ahora por alguna razon la consola de depuracion no me ha funcionado por x razón, ademas, el codigo tiene comentarios para entender el funcionamiento de cada bloque, por lo que su evaluacion no deberia ser dificil.
