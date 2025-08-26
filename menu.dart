@@ -15,16 +15,19 @@ void main() {
   
   // Lista de opciones del menú
   List<String> menuOpciones = [
-    'Capturar datos del usuario',
-    'Cambiar la clave del usuario',
-    'Mostrar tablas de multiplicar',
-    'Verificar si un número es Primo',
-    'Seleccionar opción preferida del menú',
+    'Datos de Usuario',
+    'Cambiar Clave',
+    'Tabla de Multiplicar',
+    'Saber si un número ingresado es primo o no',
+    'Elegir opción de menú favorita',
+    'Mostrar datos del usuario', // Nueva opción
     'Salir'
   ];
 
   while (!salir) {
-    print('\n--- Menú de Opciones ---');
+    print('\n***************************************');
+    print('* Menu Principal            *');
+    print('***************************************');
     
     // Muestra el menú sin alterar el orden
     for (int i = 0; i < menuOpciones.length; i++) {
@@ -33,10 +36,11 @@ void main() {
       if (i + 1 == opcionPreferida) {
         opcionTexto += ' (Opción Preferida)';
       }
-      print('${i + 1}. $opcionTexto');
+      print('* ${i + 1}. $opcionTexto'.padRight(37) + '*');
     }
     
-    print('------------------------');
+    print('***************************************');
+    
     stdout.write('Ingrese su opción: ');
     
     String? opcionElegida = stdin.readLineSync();
@@ -68,6 +72,9 @@ void main() {
         seleccionarOpcionPreferida();
         break;
       case 6:
+        mostrarDatosUsuario();
+        break;
+      case 7:
         salir = true;
         break;
       default:
@@ -98,7 +105,7 @@ void capturarDatos() {
 void cambiarClave() {
   print('\n--- Cambiar Clave del Usuario ---');
   if (login.isEmpty) {
-    print('Error: Primero debe capturar los datos del usuario (Opción 1).');
+    print('❌ Error: Primero debe capturar los datos del usuario (Opción 1).');
     return;
   }
 
@@ -171,9 +178,9 @@ void verificarPrimo() {
 /// Función para la opción 5: Seleccionar la opción preferida del menú.
 void seleccionarOpcionPreferida() {
   print('\n--- Seleccionar Opción Preferida ---');
-  print('1. Capturar datos del usuario');
-  print('2. Cambiar la clave del usuario');
-  print('3. Mostrar tablas de multiplicar');
+  print('1. Datos de Usuario');
+  print('2. Cambiar Clave');
+  print('3. Tabla de Multiplicar');
   stdout.write('Ingrese el número de la opción que desea como preferida: ');
   int? opcion = int.tryParse(stdin.readLineSync() ?? '');
 
@@ -185,22 +192,33 @@ void seleccionarOpcionPreferida() {
   }
 }
 
-/// Función para mostrar los datos personales al salir del programa.
-void mostrarDatosFinales() {
-  print('\n' + '-' * 30);
-  print('Datos Personales del Estudiante');
-  
-  if (nombre.isEmpty || cedula.isEmpty) {
-    print('No se han capturado datos del usuario. Saliendo del programa.');
+/// Nueva función para la opción 6: Mostrar los datos del usuario.
+void mostrarDatosUsuario() {
+  print('\n--- Datos del Usuario Ingresados ---');
+  if (cedula.isEmpty) {
+    print('No se han capturado datos. Por favor, use la opción 1 primero.');
   } else {
     print('Cédula: $cedula');
-    print('Nombre Completo: $nombre');
+    print('Nombre: $nombre');
     print('Login: $login');
     print('Clave: $clave');
     print('Ciudad: $ciudad');
-    print('\nAutoevaluación:');
-    print('He completado las funcionalidades del programa, demostrando la capacidad de manejar entradas de usuario, lógica condicional, bucles y manipulación de datos en Dart.');
   }
-  
-  print('-' * 30);
+}
+
+/// Función para mostrar los datos personales al salir del programa.
+void mostrarDatosFinales() {
+  print('\n' + '*' * 30);
+  print('* Datos Personales del Estudiante');
+  print('*');
+  print('* Código: 1018238704');
+  print('* Nombre Completo: Mateo Usuga Vasco');
+  print('* Correo: mateo.usuga.v21@gmail.com');
+  print('* Fecha de Nacimiento: 19/09/2007');
+  print('* Lugar de Nacimiento: Medellín - Antioquia');
+  print('*');
+  print('* Autoevaluación:');
+  print('* El ptograma cumple con todos los requisitos solicitados, incluyendo la captura de datos, cambio de clave, tablas de multiplicar, verificación de números primos, selección de opción preferida y visualización de datos del usuario. Además, se han implementado validaciones para asegurar la integridad de los datos ingresados.');
+  print('*');
+  print('*' * 30);
 }
